@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 // Uncomment to use SDL sound
-//#include "SDL.h"
+#include "SDL.h"
 
 const long sample_rate = 44100;
 static Simple_Apu apu;
