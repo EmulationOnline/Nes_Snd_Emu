@@ -3,6 +3,7 @@
 
 #include "Blip_Buffer.h"
 
+#include <climits>
 #include <string.h>
 #include <math.h>
 

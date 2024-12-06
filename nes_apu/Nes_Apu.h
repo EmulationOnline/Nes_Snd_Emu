@@ -10,6 +10,7 @@ typedef long     cpu_time_t; // CPU clock cycle count
 typedef unsigned cpu_addr_t; // 16-bit memory address
 
 #include "Nes_Oscs.h"
+#include <climits>
 
 struct apu_snapshot_t;
 class Nonlinear_Buffer;
