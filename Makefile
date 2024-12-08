@@ -1,4 +1,4 @@
-all: demo_static demo_shared libapu.so
+all: demo_static demo_shared libapu.so libapu.o
 
 .PHONY: clean
 clean:
@@ -20,5 +20,6 @@ run_shared: demo_shared
 demo_shared: libapu.so $(DEMO_SRCS)
 	$(CXX) $(shell pkg-config -cflags sdl) $^ libapu.so $(shell pkg-config -libs sdl) -o demo_shared
 
-libapu.so: $(APU_LIB_SRCS)
+libapu.so: $(APU_LIB_SRCS) libapu.cc
 	$(CXX) $^ -shared -fPIC -o libapu.so
+
