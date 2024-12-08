@@ -31,6 +31,11 @@ extern "C" void libapu_end_frame(void);
 // Returns 1 on success or 0 on failure.
 extern "C" char libapu_load_state(int fd);
 extern "C" char libapu_save_state(int fd);
+// DMC support. DMC needs to read samples from memory. This
+// tells the dmc how to read bytes from the system bus.
+extern "C" void libapu_set_dmc_read(
+	int (*callback)( void* user_data, unsigned ), void* user_data = NULL );
+
 
 /*
  * Implementations
@@ -130,4 +135,14 @@ char libapu_save_state(int fd) {
         return 0;
     }
     return 1;
+}
+
+extern "C"
+__attribute__((visibility("default")))
+void libapu_set_dmc_read(
+	int (*callback)( void* user_data, unsigned ), void* user_data) {
+
+    _global_apu->dmc_reader(
+            (int(*)(void*, unsigned))callback, 
+            user_data);
 }
