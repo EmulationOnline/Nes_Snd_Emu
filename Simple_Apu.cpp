@@ -81,3 +81,6 @@ void Simple_Apu::load_snapshot( apu_snapshot_t const& in )
 	apu.load_snapshot( in );
 }
 
+char Simple_Apu::has_irq() const {
+    return apu.earliest_irq() == apu.irq_waiting;
+}

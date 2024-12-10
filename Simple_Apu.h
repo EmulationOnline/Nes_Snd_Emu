@@ -43,6 +43,9 @@ public:
 	// Save/load snapshot of emulation state
 	void save_snapshot( apu_snapshot_t* out ) const;
 	void load_snapshot( apu_snapshot_t const& );
+
+    // returns 1 if either dmc or frame irq has been set.
+    char has_irq() const;
 	
 private:
 	Nes_Apu apu;

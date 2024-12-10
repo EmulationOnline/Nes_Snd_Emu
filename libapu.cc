@@ -35,6 +35,9 @@ extern "C" char libapu_save_state(int fd);
 // tells the dmc how to read bytes from the system bus.
 extern "C" void libapu_set_dmc_read(
 	int (*callback)( void* user_data, unsigned ), void* user_data = NULL );
+// IRQ support. Can be polled to see if an irq has been set internally.
+// Clears in response to memory reads etc.
+extern "C" char libapu_has_irq(void);
 
 
 /*
@@ -145,4 +148,10 @@ void libapu_set_dmc_read(
     _global_apu->dmc_reader(
             (int(*)(void*, unsigned))callback, 
             user_data);
+}
+
+extern "C" 
+__attribute__((visibility("default")))
+char libapu_has_irq() {
+    return _global_apu->has_irq();
 }
