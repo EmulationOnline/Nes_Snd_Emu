@@ -20,6 +20,8 @@ run_shared: demo_shared
 demo_shared: libapu.so $(DEMO_SRCS)
 	$(CXX) $(shell pkg-config -cflags sdl) $^ libapu.so $(shell pkg-config -libs sdl) -o demo_shared
 
+# CFLAGS=-fvisibility=hidden -ffreestanding -nostdlib -fPIC -O3 -Wfatal-errors
+CFLAGS=-fvisibility=hidden -ffreestanding -fPIC -O3 -Wfatal-errors
 libapu.so: $(APU_LIB_SRCS) libapu.cc
-	$(CXX) -I. $^ -shared -fPIC -o libapu.so
+	$(CXX) -I. $(CFLAGS) -fPIC $^ -shared -o libapu.so
 
