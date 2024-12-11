@@ -3,6 +3,7 @@
 // waveforms to a Blip_Buffer.
 
 // Blip_Buffer 0.3.3. Copyright (C) 2003-2005 Shay Green. GNU LGPL license.
+#include <stdint.h>
 
 #ifndef BLIP_SYNTH_H
 #define BLIP_SYNTH_H
@@ -137,7 +138,8 @@ inline void Blip_Synth<quality,range>::offset_resampled( blip_resampled_time_t t
 {
 	typedef blip_pair_t_ pair_t;
 	
-	unsigned sample_index = (time >> BLIP_BUFFER_ACCURACY) & ~1;
+    const uint32_t mask32 = ~1;
+	unsigned sample_index = (time >> BLIP_BUFFER_ACCURACY) & mask32;
 	assert(( "Blip_Synth/Blip_wave: Went past end of buffer",
 			sample_index < blip_buf->buffer_size_ ));
 	enum { const_offset = Blip_Buffer::widest_impulse_ / 2 - width / 2 };
