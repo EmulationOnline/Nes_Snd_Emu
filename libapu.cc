@@ -43,7 +43,7 @@ extern "C" char libapu_has_irq(void);
 /*
  * Implementations
  */
-Simple_Apu* _global_apu = 0;
+static Simple_Apu* _global_apu = 0;
 
 extern "C"
 __attribute__((visibility("default")))
