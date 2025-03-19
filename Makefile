@@ -1,4 +1,5 @@
-all: demo_static demo_shared libapu.so libapu.o
+.PHONY: libapu.so
+all: demo_static demo_shared libapu.so libapu.so
 
 .PHONY: clean
 clean:

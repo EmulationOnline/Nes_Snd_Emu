@@ -226,6 +226,10 @@ inline long Blip_Buffer::sample_rate() const {
 
 inline void Blip_Buffer::end_frame( blip_time_t t ) {
 	offset_ += t * factor_;
+    if (samples_avail() > buffer_size_) {
+        // overflow, drop everything to make room
+        remove_samples(samples_avail());
+    }
 	assert(( "Blip_Buffer::end_frame(): Frame went past end of buffer",
 			samples_avail() <= (long) buffer_size_ ));
 }
