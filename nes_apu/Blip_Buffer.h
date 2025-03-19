@@ -5,7 +5,6 @@
 
 #ifndef BLIP_BUFFER_H
 #define BLIP_BUFFER_H
-#include "blargg_common.h"
 
 // Time unit at source clock rate
 typedef long blip_time_t;
