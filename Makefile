@@ -1,4 +1,6 @@
 .PHONY: libapu.so
+CC=gcc
+CXX=g++ -std=c++17
 all: demo_static demo_shared libapu.so libapu.so
 
 .PHONY: clean
